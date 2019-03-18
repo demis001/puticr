@@ -1,0 +1,177 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Installation &#8212; puticr 0.0.1 documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="installation">
+<h1>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="stable-release">
+<h2>Stable release<a class="headerlink" href="#stable-release" title="Permalink to this headline">¶</a></h2>
+<p>System dependancies:</p>
+<ol class="arabic simple">
+<li>Python &gt;= 2.7 &lt;- usally exist in all linux system, check the version</li>
+<li>graphviz &lt;- install this as a root user</li>
+</ol>
+<p>To install graphviz follow package manager on your unix/linux system.</p>
+<p>In Ubuntu, do this on a linux terminal as root user, if you are not super user, ask your system admin to install it.</p>
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="go">sudo apt-get install graphviz</span>
+</pre></div>
+</div>
+<p>In Red Hat flavor linux such as CentOs:</p>
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="go">sudo yum install graphviz</span>
+</pre></div>
+</div>
+<p>Note: Make sure the pip and virtualenv packages are  installed on your system.</p>
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="go">which pip</span>
+<span class="go">which virtualenv</span>
+</pre></div>
+</div>
+<p>If not installed,</p>
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="go">curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py</span>
+<span class="go">python get-pip.py  --user</span>
+</pre></div>
+</div>
+<p>Then, if there is no virtualenv package</p>
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="go">pip install virtualenv</span>
+</pre></div>
+</div>
+<p>To install puticr, run this command in your terminal:</p>
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="go">git clone https://github.com/demis001/puticr.git ; cd puticr ; make install</span>
+</pre></div>
+</div>
+<p>This is the preferred method to install puticr, as it will always install the most recent stable release.</p>
+<p>Download test data from this site <a class="reference external" href="https://www.ddjima.com/software/">https://www.ddjima.com/software/</a>  and extract the result in the same directory. The directory contains an example fastq files and indexed genome and test data.</p>
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="go">wget https://ddjima.com/wp-content/uploads/2019/02/testData.zip</span>
+</pre></div>
+</div>
+<p>To extract …</p>
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="go">unzip testData.zip</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="run-the-test-data">
+<h2>Run the test data<a class="headerlink" href="#run-the-test-data" title="Permalink to this headline">¶</a></h2>
+<p>The application has to run in Python virtual envirnoment. First,  activate the virtual environment to use the application after installation.</p>
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="go">source   puticr/bin/activate</span>
+</pre></div>
+</div>
+<p>Then, run the following line to test the application …
+This is also the way to run germ layer tissue samples (50% methylation)</p>
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="go">puticr_cli  -o outdir2 -f testData/raw  -l 6 -c 12  -L 0.3 -U 0.7  --indexed=no --refGenome=hs_chr6.fa --refGenomeDir=testData/genome2/</span>
+</pre></div>
+</div>
+<p>To index your own reference genome and run your own data, create  the directory to hold the reference genome, merge all chromosome and store your genome as a single fasta  file. Example, mm10.fa, hs.fa etc.</p>
+<p>Then do this, <cite>indexed=yes</cite> telling the application to index before it uses it. Assumming you saved mm10.fa genome under mm10ref directory…</p>
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="go">puticr_cli  -o outdir2 -f testData/raw -l 6 -c 12  -L 0.3 -U 0.7  --indexed=yes --refGenome=mm10.fa --refGenomeDir=YOURPATH/mm10ref/</span>
+</pre></div>
+</div>
+<p>To run gamet cells samples (oocytes and sperm) that expected (100% methylation call)</p>
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="go">puticr_cli  -o outdir2 -f testData/raw  -l 6 -c 12  -L 0.8 -U 1.0  --indexed=no --refGenome=hs_chr6.fa --refGenomeDir=testData/genome2/</span>
+</pre></div>
+</div>
+<p>Note: The Germ layer tisse samples and the gamet cells samples must be called separetlly.</p>
+<p>Once  you have installed the document, don’t forget to activate before each use.</p>
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="go">source   puticr/bin/activate</span>
+</pre></div>
+</div>
+<p>To deactivate virtual envirnoment. Type the following command on Linux commmand line</p>
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="go">deactivate</span>
+</pre></div>
+</div>
+<p>This will exit the virtual envirnoment</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Installation</a><ul>
+<li><a class="reference internal" href="#stable-release">Stable release</a></li>
+<li><a class="reference internal" href="#run-the-test-data">Run the test data</a></li>
+</ul>
+</li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/installation.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2019, Dereje Jima.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.7</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
+      
+      |
+      <a href="_sources/installation.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

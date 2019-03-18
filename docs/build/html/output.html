@@ -1,0 +1,578 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Output &#8212; puticr 0.0.1 documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="output">
+<h1>Output<a class="headerlink" href="#output" title="Permalink to this headline">¶</a></h1>
+<p>This shows the key intermediate and final files useful to understand.</p>
+</div>
+<div class="section" id="key-output-dir-tree">
+<h1>Key output dir tree<a class="headerlink" href="#key-output-dir-tree" title="Permalink to this headline">¶</a></h1>
+<p>Here are the key files and directories in the output folder. The file structure is the same while running oocyte and sperm.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>outputDirName
+├── logs
+├── LICENCE.txt
+├── result
+│   ├── analysisDir: Final output directory
+          ├── *.merged.sorted_CGcontext.CGmap: Output after restring extracting the CG context from CGmap file (*.merged.sorted.CGmap.gz)
+          ├── *.merged.sorted_CGcontext_updated.CGmap: Output after merging the asymitrical CpG&#39;s from the CGmap file (*.merged.sorted_CGcontext.CGmap)
+          ├── *.merged.sorted_CGcontext_updated.CGmap: Output after merging the asymitrical CpG&#39;s from the CGmap file (*.merged.sorted_CGcontext.CGmap)
+          ├── *.merged.sorted_CGcontext_putative_icr.txt: Output after scanning ICR hotspot from the updated CGmap file (*.merged.sorted_CGcontext_updated.CGmap)
+          ├── *.merged.sorted_CGcontext_putative_icr.bed: htospot Converted to bed format
+          ├── bed_merge_bedfile.bed: Merged all bed files from multiple tissue for downstream analysis
+          ├── bed_union_bedfile.bed: Union of bed fils from multiple tissue
+          ├── bedfile_putative_ICR_AllTissues.bed: Final putative ICR files that will be used to intersect with oocyte and sperm calls.
+│   └── bboxinout.py
+│   └── rawData: Symbolic link to your input directory
+│   └── trimFastq: Directory that contain intermediate quality trimmed files and alignment bam files
+        │   └── *_trimmed.fq.gz: Quality trimmed input fastq files
+        │   └── *.bam: intermediate bam files
+        │   └── *.merged.sorted.ATCGmap.gz: Methylation ration call for the three context from cgmaptools
+        │   └── *.merged.sorted.CGmap.gz: Methylation ration call as CGmap format from cgmaptools
+</pre></div>
+</div>
+</div>
+<div class="section" id="output-examples">
+<h1>Output Examples<a class="headerlink" href="#output-examples" title="Permalink to this headline">¶</a></h1>
+<p>Check the tutorial page from <a class="reference external" href="https://cgmaptools.github.io/cgmaptools_documentation/file-formats.html#cgmap-format">cgmaptools</a>  to read the descrption of each column.</p>
+<div class="section" id="cgmap-file-from-cgmaptools">
+<h2>CGmap file from cgmaptools<a class="headerlink" href="#cgmap-file-from-cgmaptools" title="Permalink to this headline">¶</a></h2>
+<table border="1" class="docutils">
+<colgroup>
+<col width="11%" />
+<col width="11%" />
+<col width="18%" />
+<col width="14%" />
+<col width="18%" />
+<col width="14%" />
+<col width="7%" />
+<col width="7%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">chr</th>
+<th class="head">NUC</th>
+<th class="head">POS</th>
+<th class="head">CONT</th>
+<th class="head">DINUC</th>
+<th class="head">METH</th>
+<th class="head">MC</th>
+<th class="head">NC</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>6</td>
+<td>C</td>
+<td>60275</td>
+<td>CHG</td>
+<td>CT</td>
+<td>0.00</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr class="row-odd"><td>6</td>
+<td>C</td>
+<td>60280</td>
+<td>CHH</td>
+<td>CC</td>
+<td>0.00</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr class="row-even"><td>6</td>
+<td>C</td>
+<td>60281</td>
+<td>CHH</td>
+<td>CT</td>
+<td>0.00</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr class="row-odd"><td>6</td>
+<td>C</td>
+<td>60284</td>
+<td>CHH</td>
+<td>CC</td>
+<td>0.00</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr class="row-even"><td>6</td>
+<td>C</td>
+<td>60285</td>
+<td>CHG</td>
+<td>CT</td>
+<td>0.00</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr class="row-odd"><td>6</td>
+<td>C</td>
+<td>60293</td>
+<td>CHH</td>
+<td>CC</td>
+<td>0.00</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr class="row-even"><td>6</td>
+<td>C</td>
+<td>60294</td>
+<td>CHH</td>
+<td>CC</td>
+<td>0.00</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr class="row-odd"><td>6</td>
+<td>C</td>
+<td>60295</td>
+<td>CHH</td>
+<td>CT</td>
+<td>0.00</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr class="row-even"><td>6</td>
+<td>G</td>
+<td>60620</td>
+<td>CHH</td>
+<td>CT</td>
+<td>0.00</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr class="row-odd"><td>6</td>
+<td>G</td>
+<td>60623</td>
+<td>CHG</td>
+<td>CT</td>
+<td>0.00</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr class="row-even"><td>6</td>
+<td>G</td>
+<td>60799</td>
+<td>CG</td>
+<td>CG</td>
+<td>1.00</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr class="row-odd"><td>6</td>
+<td>C</td>
+<td>66946</td>
+<td>CG</td>
+<td>CG</td>
+<td>0.80</td>
+<td>4</td>
+<td>5</td>
+</tr>
+<tr class="row-even"><td>6</td>
+<td>G</td>
+<td>66947</td>
+<td>CG</td>
+<td>CG</td>
+<td>1.00</td>
+<td>3</td>
+<td>3</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="restrict-to-cg-context">
+<h2>Restrict to CG context<a class="headerlink" href="#restrict-to-cg-context" title="Permalink to this headline">¶</a></h2>
+<table border="1" class="docutils">
+<colgroup>
+<col width="11%" />
+<col width="11%" />
+<col width="18%" />
+<col width="14%" />
+<col width="18%" />
+<col width="14%" />
+<col width="7%" />
+<col width="7%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">chr</th>
+<th class="head">NUC</th>
+<th class="head">POS</th>
+<th class="head">CONT</th>
+<th class="head">DINUC</th>
+<th class="head">METH</th>
+<th class="head">MC</th>
+<th class="head">NC</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>6</td>
+<td>G</td>
+<td>60799</td>
+<td>CG</td>
+<td>CG</td>
+<td>1.00</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr class="row-odd"><td>6</td>
+<td>C</td>
+<td>66946</td>
+<td>CG</td>
+<td>CG</td>
+<td>0.80</td>
+<td>4</td>
+<td>5</td>
+</tr>
+<tr class="row-even"><td>6</td>
+<td>G</td>
+<td>66947</td>
+<td>CG</td>
+<td>CG</td>
+<td>1.00</td>
+<td>3</td>
+<td>3</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="merge-symetrical-cpg-lines-updated-cgmap-file">
+<h2>Merge symetrical CpG lines (updated CGmap file)<a class="headerlink" href="#merge-symetrical-cpg-lines-updated-cgmap-file" title="Permalink to this headline">¶</a></h2>
+<table border="1" class="docutils">
+<colgroup>
+<col width="11%" />
+<col width="11%" />
+<col width="18%" />
+<col width="14%" />
+<col width="18%" />
+<col width="14%" />
+<col width="7%" />
+<col width="7%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">chr</th>
+<th class="head">NUC</th>
+<th class="head">POS</th>
+<th class="head">CONT</th>
+<th class="head">DINUC</th>
+<th class="head">METH</th>
+<th class="head">MC</th>
+<th class="head">NC</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>6</td>
+<td>G</td>
+<td>60799</td>
+<td>CG</td>
+<td>CG</td>
+<td>1.00</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr class="row-odd"><td>6</td>
+<td>C</td>
+<td>66946</td>
+<td>CG</td>
+<td>CG</td>
+<td>0.90</td>
+<td>7</td>
+<td>8</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="identify-icr-hotspot-from-each-tissue-or-gamet-cells">
+<h2>Identify ICR hotspot from each tissue or gamet cells<a class="headerlink" href="#identify-icr-hotspot-from-each-tissue-or-gamet-cells" title="Permalink to this headline">¶</a></h2>
+<p>This will be generated for all tissues and gamet cells (oocyte and sperm).
+For germ cell tissues, we will merge the bed fils for each tissue (next step)</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="7%" />
+<col width="17%" />
+<col width="17%" />
+<col width="15%" />
+<col width="10%" />
+<col width="7%" />
+<col width="5%" />
+<col width="22%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">chr</th>
+<th class="head">start</th>
+<th class="head">end</th>
+<th class="head">length</th>
+<th class="head">MP</th>
+<th class="head">TMR</th>
+<th class="head">TR</th>
+<th class="head">CpG_count</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>6</td>
+<td>142227</td>
+<td>142313</td>
+<td>86</td>
+<td>0.53</td>
+<td>3</td>
+<td>6</td>
+<td>6</td>
+</tr>
+<tr class="row-odd"><td>6</td>
+<td>7322171</td>
+<td>7322364</td>
+<td>193</td>
+<td>0.53</td>
+<td>2</td>
+<td>3</td>
+<td>7</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="merged-bed-file">
+<h2>Merged bed file<a class="headerlink" href="#merged-bed-file" title="Permalink to this headline">¶</a></h2>
+<table border="1" class="docutils">
+<colgroup>
+<col width="25%" />
+<col width="38%" />
+<col width="38%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Chr</th>
+<th class="head">start</th>
+<th class="head">end</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>chr6</td>
+<td>135139</td>
+<td>135605</td>
+</tr>
+<tr class="row-odd"><td>chr6</td>
+<td>139907</td>
+<td>140060</td>
+</tr>
+<tr class="row-even"><td>chr6</td>
+<td>142227</td>
+<td>142313</td>
+</tr>
+<tr class="row-odd"><td>chr6</td>
+<td>146405</td>
+<td>146477</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="union-bed-file">
+<h2>Union bed file<a class="headerlink" href="#union-bed-file" title="Permalink to this headline">¶</a></h2>
+<table border="1" class="docutils">
+<colgroup>
+<col width="4%" />
+<col width="7%" />
+<col width="7%" />
+<col width="82%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>chr6</td>
+<td>135139</td>
+<td>135605</td>
+<td>outdir/result/analysisDir/Liver.merged.sorted_CGcontext_putative_icr.bed</td>
+</tr>
+<tr class="row-even"><td>chr6</td>
+<td>139907</td>
+<td>140060</td>
+<td>outdir/result/analysisDir/Brain.merged.sorted_CGcontext_putative_icr.bed</td>
+</tr>
+<tr class="row-odd"><td>chr6</td>
+<td>142227</td>
+<td>142313</td>
+<td>outdir/result/analysisDir/Kidney.merged.sorted_CGcontext_putative_icr.bed</td>
+</tr>
+<tr class="row-even"><td>chr6</td>
+<td>146405</td>
+<td>146477</td>
+<td>outdir/result/analysisDir/Liver.merged.sorted_CGcontext_putative_icr.bed</td>
+</tr>
+<tr class="row-odd"><td>chr6</td>
+<td>188561</td>
+<td>188610</td>
+<td>outdir/result/analysisDir/Kidney.merged.sorted_CGcontext_putative_icr.bed</td>
+</tr>
+<tr class="row-even"><td>chr6</td>
+<td>311402</td>
+<td>311452</td>
+<td>outdir/result/analysisDir/Kidney.merged.sorted_CGcontext_putative_icr.bed</td>
+</tr>
+<tr class="row-odd"><td>chr6</td>
+<td>348927</td>
+<td>348958</td>
+<td>outdir/result/analysisDir/Liver.merged.sorted_CGcontext_putative_icr.bed</td>
+</tr>
+<tr class="row-even"><td>chr6</td>
+<td>359826</td>
+<td>360962</td>
+<td>outdir/result/analysisDir/Brain.merged.sorted_CGcontext_putative_icr.bed</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="count-putative-icr-in-all-tissue-final-file">
+<h2>Count putative ICR in all tissue (Final file)<a class="headerlink" href="#count-putative-icr-in-all-tissue-final-file" title="Permalink to this headline">¶</a></h2>
+<p>The last column is a count in all tissue. This mean the ICR exist in 1 tissue only, in 2 tissues and 3 etc.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="17%" />
+<col width="39%" />
+<col width="39%" />
+<col width="4%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>chr6</td>
+<td>118736283</td>
+<td>118736335</td>
+<td>1</td>
+</tr>
+<tr class="row-even"><td>chr6</td>
+<td>118742075</td>
+<td>118742229</td>
+<td>1</td>
+</tr>
+<tr class="row-odd"><td>chr6</td>
+<td>119239091</td>
+<td>119239173</td>
+<td>2</td>
+</tr>
+<tr class="row-even"><td>chr6</td>
+<td>119310973</td>
+<td>119310996</td>
+<td>3</td>
+</tr>
+<tr class="row-odd"><td>chr6</td>
+<td>119625970</td>
+<td>119626080</td>
+<td>1</td>
+</tr>
+<tr class="row-even"><td>chr6</td>
+<td>120096163</td>
+<td>120096207</td>
+<td>2</td>
+</tr>
+<tr class="row-odd"><td>chr6</td>
+<td>120359520</td>
+<td>120360857</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+<p>At this point, we have generated three files of similar structures, one from germ layer tissues such as kidney, liver etc and two from Gamate cells (ocytes and sperm)</p>
+<p>Before you instersect the three fiels and find bona fide ICR, it is advicable to pre-filter, the output file form the germ layer tissues. Based on the count column we may filter,
+the locus should exist at least 2/3 of the tissues.</p>
+<p>Example, if you did 3 tissues, we may restrict the locus should exist in at least 2 tissues.</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>awk  <span class="s1">&#39;$4 &gt;= 2 {print $0}&#39;</span>  bedfile_putative_ICR_AllTissues.bed &gt; bedfile_putative_ICR_AllTissues_2ORmore.bed
+</pre></div>
+</div>
+<p>Then, this will be interesected with oocyte and sperm files to find the final list of bona fide ICRs.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Output</a></li>
+<li><a class="reference internal" href="#key-output-dir-tree">Key output dir tree</a></li>
+<li><a class="reference internal" href="#output-examples">Output Examples</a><ul>
+<li><a class="reference internal" href="#cgmap-file-from-cgmaptools">CGmap file from cgmaptools</a></li>
+<li><a class="reference internal" href="#restrict-to-cg-context">Restrict to CG context</a></li>
+<li><a class="reference internal" href="#merge-symetrical-cpg-lines-updated-cgmap-file">Merge symetrical CpG lines (updated CGmap file)</a></li>
+<li><a class="reference internal" href="#identify-icr-hotspot-from-each-tissue-or-gamet-cells">Identify ICR hotspot from each tissue or gamet cells</a></li>
+<li><a class="reference internal" href="#merged-bed-file">Merged bed file</a></li>
+<li><a class="reference internal" href="#union-bed-file">Union bed file</a></li>
+<li><a class="reference internal" href="#count-putative-icr-in-all-tissue-final-file">Count putative ICR in all tissue (Final file)</a></li>
+</ul>
+</li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/output.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2019, Dereje Jima.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.7</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
+      
+      |
+      <a href="_sources/output.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

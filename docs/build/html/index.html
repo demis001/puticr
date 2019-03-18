@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Here is puticr’s documentation! &#8212; puticr 0.0.1 documentation</title>
+    <title>Putative Imprint Control Regions (ICRs) identification pipeline (puticr) &#8212; puticr 0.0.1 documentation</title>
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script type="text/javascript">
@@ -23,7 +23,7 @@
     <script type="text/javascript" src="_static/doctools.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="License:" href="license.html" />
+    <link rel="next" title="Installation" href="installation.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   
@@ -38,21 +38,72 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="here-is-puticr-s-documentation">
-<h1>Here is  puticr’s documentation!<a class="headerlink" href="#here-is-puticr-s-documentation" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="putative-imprint-control-regions-icrs-identification-pipeline-puticr">
+<h1>Putative Imprint Control Regions (ICRs) identification pipeline (puticr)<a class="headerlink" href="#putative-imprint-control-regions-icrs-identification-pipeline-puticr" title="Permalink to this headline">¶</a></h1>
 <div class="toctree-wrapper compound">
+<p class="caption"><span class="caption-text">Contents:</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="license.html">License:</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#stable-release">Stable release</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#run-the-test-data">Run the test data</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="analysis.html">Running the Pipeline</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="analysis.html#activating-the-pipeline">Activating the Pipeline</a></li>
+<li class="toctree-l2"><a class="reference internal" href="analysis.html#to-get-help">To get help</a></li>
+<li class="toctree-l2"><a class="reference internal" href="analysis.html#general-pipeline-flowchart">General pipeline flowchart</a></li>
+<li class="toctree-l2"><a class="reference internal" href="analysis.html#usage-examples">Usage Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="analysis.html#checking-error-logs">Checking error logs</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="output.html">Output</a></li>
+<li class="toctree-l1"><a class="reference internal" href="output.html#key-output-dir-tree">Key output dir tree</a></li>
+<li class="toctree-l1"><a class="reference internal" href="output.html#output-examples">Output Examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="output.html#cgmap-file-from-cgmaptools">CGmap file from cgmaptools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="output.html#restrict-to-cg-context">Restrict to CG context</a></li>
+<li class="toctree-l2"><a class="reference internal" href="output.html#merge-symetrical-cpg-lines-updated-cgmap-file">Merge symetrical CpG lines (updated CGmap file)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="output.html#identify-icr-hotspot-from-each-tissue-or-gamet-cells">Identify ICR hotspot from each tissue or gamet cells</a></li>
+<li class="toctree-l2"><a class="reference internal" href="output.html#merged-bed-file">Merged bed file</a></li>
+<li class="toctree-l2"><a class="reference internal" href="output.html#union-bed-file">Union bed file</a></li>
+<li class="toctree-l2"><a class="reference internal" href="output.html#count-putative-icr-in-all-tissue-final-file">Count putative ICR in all tissue (Final file)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="help.html">Help</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="help.html#frequently-asked-questions">Frequently Asked Questions</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="modules.html">puticr</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="puticr.html">puticr package</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="authors.html">Credits</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="authors.html#development-lead">Development Lead</a></li>
+<li class="toctree-l2"><a class="reference internal" href="authors.html#contributors">Contributors</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#types-of-contributions">Types of Contributions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#get-started">Get Started!</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#pull-request-guidelines">Pull Request Guidelines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#tips">Tips</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#deploying">Deploying</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="history.html">History</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="history.html#id1">0.1.0 (2018-12-18)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
 </ul>
 </div>
-</div>
 <div class="section" id="indices-and-tables">
-<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">¶</a></h1>
+<h2>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></li>
 <li><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></li>
 <li><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></li>
 </ul>
+</div>
 </div>
 
 
@@ -63,14 +114,16 @@
         <div class="sphinxsidebarwrapper">
   <h3><a href="#">Table Of Contents</a></h3>
   <ul>
-<li><a class="reference internal" href="#">Here is  puticr’s documentation!</a></li>
+<li><a class="reference internal" href="#">Putative Imprint Control Regions (ICRs) identification pipeline (puticr)</a><ul>
 <li><a class="reference internal" href="#indices-and-tables">Indices and tables</a></li>
+</ul>
+</li>
 </ul>
 <div class="relations">
 <h3>Related Topics</h3>
 <ul>
   <li><a href="#">Documentation overview</a><ul>
-      <li>Next: <a href="license.html" title="next chapter">License:</a></li>
+      <li>Next: <a href="installation.html" title="next chapter">Installation</a></li>
   </ul></li>
 </ul>
 </div>

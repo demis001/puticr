@@ -1,0 +1,176 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Running the Pipeline &#8212; puticr 0.0.1 documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="running-the-pipeline">
+<h1>Running the Pipeline<a class="headerlink" href="#running-the-pipeline" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="activating-the-pipeline">
+<span id="activate"></span><h2>Activating the Pipeline<a class="headerlink" href="#activating-the-pipeline" title="Permalink to this headline">¶</a></h2>
+<p>You must always ensure that the virtualenv that you installed into during the
+<a class="reference internal" href="installation.html"><span class="doc">Installation</span></a> is activated prior to running any portion of the pipeline.</p>
+<p>You only have to do this if you have closed your terminal since the last time your
+activated.</p>
+<p>You need to specify the full path to the activate script such as</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$&gt; . /path/to/puticr/puticr/bin/activate
+</pre></div>
+</div>
+<p>You can read more about what virtualenv is <a class="reference external" href="https://virtualenv.pypa.io/en/latest/">here</a></p>
+</div>
+<div class="section" id="to-get-help">
+<h2>To get help<a class="headerlink" href="#to-get-help" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>puticr_cli -h
+</pre></div>
+</div>
+<p>If your fastq file has a <cite>.fq.gz</cite> extension, make sure to rename to <cite>tissueName.*.fastq.gz</cite> extension and it should be gzipped.
+The name of the fastq file does matter. For example, Brain.21423B_S1_R1_001.fastq.gz, Liver.21423L_S3_R1_001.fastq.gz, oocyte.5423B_S1_R1_001.fastq.gz,
+Brain.21424B_S5_R1_001.fastq.gz</p>
+</div>
+<div class="section" id="general-pipeline-flowchart">
+<h2>General pipeline flowchart<a class="headerlink" href="#general-pipeline-flowchart" title="Permalink to this headline">¶</a></h2>
+<img alt="_images/flowchart.png" src="_images/flowchart.png" />
+</div>
+<div class="section" id="usage-examples">
+<h2>Usage Examples<a class="headerlink" href="#usage-examples" title="Permalink to this headline">¶</a></h2>
+<p>You must use  <cite>TissueName</cite>.*.fastq.gz``</p>
+<div class="section" id="typical-usage-with-germ-cell-tissues-such-as-kidney-liver-brain">
+<h3>Typical Usage with germ cell tissues such as kidney, liver, brain …<a class="headerlink" href="#typical-usage-with-germ-cell-tissues-such-as-kidney-liver-brain" title="Permalink to this headline">¶</a></h3>
+<p>In this case, the goal is to find a region where the genome is methylated 50%. We will use the lower methylation cutoff of 0.3 and the upper cutoff 0.7.
+Don’t forget to store the <cite>tissueName.*.fastq.gz</cite> file under any directory name and pass to -f option. I suggest to store the raw data into separate folders.
+One for somatic tissue fastq.gz  files and the other for gamet cells (oocyte and sperm). The pipleline only  support single end reads.</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>puticr_cli  -o outputDir1 -f testData/raw  -l <span class="m">6</span> -c <span class="m">12</span>  -L <span class="m">0</span>.3 -U <span class="m">0</span>.7  --indexed<span class="o">=</span>no --refGenome<span class="o">=</span>hs_chr6.fa --refGenomeDir<span class="o">=</span>testData/genome2/
+</pre></div>
+</div>
+</div>
+<div class="section" id="gamet-cells-oocyte-and-sperm">
+<h3>Gamet cells (oocyte and sperm)<a class="headerlink" href="#gamet-cells-oocyte-and-sperm" title="Permalink to this headline">¶</a></h3>
+<p>The goal is to find a region where the genome is methylated 100%</p>
+<blockquote>
+<div><div class="highlight-bash"><div class="highlight"><pre><span></span>puticr_cli  -o outputDir2 -f testData/raw  -l <span class="m">6</span> -c <span class="m">12</span>  -L <span class="m">0</span>.8 -U <span class="m">1</span>.0 --indexed<span class="o">=</span>no --refGenome<span class="o">=</span>hs_chr6.fa --refGenomeDir<span class="o">=</span>testData/genome2/
+</pre></div>
+</div>
+</div></blockquote>
+</div>
+<div class="section" id="to-index-your-own-genome-and-run-the-pipeline">
+<h3>To index your own genome and run the pipeline<a class="headerlink" href="#to-index-your-own-genome-and-run-the-pipeline" title="Permalink to this headline">¶</a></h3>
+<p>Assuming you downlaoded and saved <cite>hs38.fa</cite> under <cite>mygenome/genome3/</cite>, you will turn on <cite>indexed=yes</cite>. Indexing a genome is a slower process, be petient.</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>puticr_cli  -o outputDir1 -f testData/raw  -l <span class="m">6</span> -c <span class="m">12</span>  -L <span class="m">0</span>.3 -U <span class="m">0</span>.7  --indexed<span class="o">=</span>yes --refGenome<span class="o">=</span>hs38.fa --refGenomeDir<span class="o">=</span>mygenome/genome3/
+</pre></div>
+</div>
+<p>Then, the next time you run a different data or the same data. You don’t need to re-index. This is a one time process unless you used different version of the genome.</p>
+<p>Don’t forget to change <cite>–indexed=no</cite>.</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>puticr_cli  -o outputDir2 -f testData/raw  -l <span class="m">6</span> -c <span class="m">12</span>  -L <span class="m">0</span>.8 -U <span class="m">1</span>.0 --indexed<span class="o">=</span>no --refGenome<span class="o">=</span>hs38.fa --refGenomeDir<span class="o">=</span>mygenome/genome3/
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="checking-error-logs">
+<h2>Checking error logs<a class="headerlink" href="#checking-error-logs" title="Permalink to this headline">¶</a></h2>
+<p>If it fails then an error is reported that generally suggest where it failed by
+checking the key files created at each stage. Most likely, the error occurs on the
+suggested stage or the stage before it. You will likely have to check the log files
+to get an idea what went wrong and go from there.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Running the Pipeline</a><ul>
+<li><a class="reference internal" href="#activating-the-pipeline">Activating the Pipeline</a></li>
+<li><a class="reference internal" href="#to-get-help">To get help</a></li>
+<li><a class="reference internal" href="#general-pipeline-flowchart">General pipeline flowchart</a></li>
+<li><a class="reference internal" href="#usage-examples">Usage Examples</a><ul>
+<li><a class="reference internal" href="#typical-usage-with-germ-cell-tissues-such-as-kidney-liver-brain">Typical Usage with germ cell tissues such as kidney, liver, brain …</a></li>
+<li><a class="reference internal" href="#gamet-cells-oocyte-and-sperm">Gamet cells (oocyte and sperm)</a></li>
+<li><a class="reference internal" href="#to-index-your-own-genome-and-run-the-pipeline">To index your own genome and run the pipeline</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#checking-error-logs">Checking error logs</a></li>
+</ul>
+</li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/analysis.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2019, Dereje Jima.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.7</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
+      
+      |
+      <a href="_sources/analysis.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
