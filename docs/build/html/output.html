@@ -1,42 +1,185 @@
-
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Output &#8212; puticr 0.0.1 documentation</title>
-    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <title>Output &#8212; Program to idenentify putative imprint control region (ICR) from Whole genome methylation data. 0.1.0 documentation</title>
+    <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    './',
-        VERSION:     '0.0.1',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
-      };
-    </script>
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="_static/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-3.3.7/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-sphinx.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-   
-  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
-  
-  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+    <link rel="next" title="Help" href="help.html" />
+    <link rel="prev" title="Running the Pipeline" href="analysis.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
 
-  </head>
-  <body>
-  
+  </head><body>
 
-    <div class="document">
-      <div class="documentwrapper">
-        <div class="bodywrapper">
-          <div class="body" role="main">
+  <div id="navbar" class="navbar navbar-inverse navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="index.html"><span><img src="_static/my_logo.svg"></span>
+          puticr</a>
+        <span class="navbar-text navbar-version pull-left"><b>0.1.0</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
             
+                <li><a href="installation.html">puticr</a></li>
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="index.html">Home <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"><p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#stable-release">Stable release</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#run-the-test-data">Run the test data</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="analysis.html">Running the Pipeline</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="analysis.html#activating-the-pipeline">Activating the Pipeline</a></li>
+<li class="toctree-l2"><a class="reference internal" href="analysis.html#to-get-help">To get help</a></li>
+<li class="toctree-l2"><a class="reference internal" href="analysis.html#general-pipeline-flowchart">General pipeline flowchart</a></li>
+<li class="toctree-l2"><a class="reference internal" href="analysis.html#usage-examples">Usage Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="analysis.html#checking-error-logs">Checking error logs</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Output</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#key-output-dir-tree">Key output dir tree</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#output-examples">Output Examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#cgmap-file-from-cgmaptools">CGmap file from cgmaptools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#restrict-to-cg-context">Restrict to CG context</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#merge-symetrical-cpg-lines-updated-cgmap-file">Merge symetrical CpG lines (updated CGmap file)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#identify-icr-hotspot-from-each-tissue-or-gamet-cells">Identify ICR hotspot from each tissue or gamet cells</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#merged-bed-file">Merged bed file</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#union-bed-file">Union bed file</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#count-putative-icr-in-all-tissue-final-file">Count putative ICR in all tissue (Final file)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="help.html">Help</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="help.html#frequently-asked-questions">Frequently Asked Questions</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="modules.html">puticr</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="puticr.html">puticr package</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="authors.html">Credits</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="authors.html#development-lead">Development Lead</a></li>
+<li class="toctree-l2"><a class="reference internal" href="authors.html#contributors">Contributors</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#types-of-contributions">Types of Contributions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#get-started">Get Started!</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#pull-request-guidelines">Pull Request Guidelines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#tips">Tips</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#deploying">Deploying</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="history.html">History</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="history.html#id1">0.1.0 (2018-12-18)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
+</ul>
+</ul>
+</li>
+              
+                <li class="dropdown">
+  <a role="button"
+     id="dLabelLocalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="#">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"
+      role="menu"
+      aria-labelledby="dLabelLocalToc"><ul>
+<li><a class="reference internal" href="#">Output</a></li>
+<li><a class="reference internal" href="#key-output-dir-tree">Key output dir tree</a></li>
+<li><a class="reference internal" href="#output-examples">Output Examples</a><ul>
+<li><a class="reference internal" href="#cgmap-file-from-cgmaptools">CGmap file from cgmaptools</a></li>
+<li><a class="reference internal" href="#restrict-to-cg-context">Restrict to CG context</a></li>
+<li><a class="reference internal" href="#merge-symetrical-cpg-lines-updated-cgmap-file">Merge symetrical CpG lines (updated CGmap file)</a></li>
+<li><a class="reference internal" href="#identify-icr-hotspot-from-each-tissue-or-gamet-cells">Identify ICR hotspot from each tissue or gamet cells</a></li>
+<li><a class="reference internal" href="#merged-bed-file">Merged bed file</a></li>
+<li><a class="reference internal" href="#union-bed-file">Union bed file</a></li>
+<li><a class="reference internal" href="#count-putative-icr-in-all-tissue-final-file">Count putative ICR in all tissue (Final file)</a></li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
+            
+            
+              
+                
+  <li>
+    <a href="analysis.html" title="Previous Chapter: Running the Pipeline"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; Running the Pipeline</span>
+    </a>
+  </li>
+  <li>
+    <a href="help.html" title="Next Chapter: Help"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">Help &raquo;</span>
+    </a>
+  </li>
+              
+            
+            
+            
+            
+              <li class="hidden-sm">
+<div id="sourcelink">
+  <a href="_sources/output.rst.txt"
+     rel="nofollow">Source</a>
+</div></li>
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 content">
+      
   <div class="section" id="output">
 <h1>Output<a class="headerlink" href="#output" title="Permalink to this headline">¶</a></h1>
 <p>This shows the key intermediate and final files useful to understand.</p>
@@ -44,7 +187,7 @@
 <div class="section" id="key-output-dir-tree">
 <h1>Key output dir tree<a class="headerlink" href="#key-output-dir-tree" title="Permalink to this headline">¶</a></h1>
 <p>Here are the key files and directories in the output folder. The file structure is the same while running oocyte and sperm.</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span>outputDirName
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>outputDirName
 ├── logs
 ├── LICENCE.txt
 ├── result
@@ -503,7 +646,7 @@ For germ cell tissues, we will merge the bed fils for each tissue (next step)</p
 <p>Before you instersect the three fiels and find bona fide ICR, it is advicable to pre-filter, the output file form the germ layer tissues. Based on the count column we may filter,
 the locus should exist at least 2/3 of the tissues.</p>
 <p>Example, if you did 3 tissues, we may restrict the locus should exist in at least 2 tissues.</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>awk  <span class="s1">&#39;$4 &gt;= 2 {print $0}&#39;</span>  bedfile_putative_ICR_AllTissues.bed &gt; bedfile_putative_ICR_AllTissues_2ORmore.bed
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>awk  <span class="s1">&#39;$4 &gt;= 2 {print $0}&#39;</span>  bedfile_putative_ICR_AllTissues.bed &gt; bedfile_putative_ICR_AllTissues_2ORmore.bed
 </pre></div>
 </div>
 <p>Then, this will be interesected with oocyte and sperm files to find the final list of bona fide ICRs.</p>
@@ -511,68 +654,21 @@ the locus should exist at least 2/3 of the tissues.</p>
 </div>
 
 
-          </div>
-        </div>
-      </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
-        <div class="sphinxsidebarwrapper">
-  <h3><a href="index.html">Table Of Contents</a></h3>
-  <ul>
-<li><a class="reference internal" href="#">Output</a></li>
-<li><a class="reference internal" href="#key-output-dir-tree">Key output dir tree</a></li>
-<li><a class="reference internal" href="#output-examples">Output Examples</a><ul>
-<li><a class="reference internal" href="#cgmap-file-from-cgmaptools">CGmap file from cgmaptools</a></li>
-<li><a class="reference internal" href="#restrict-to-cg-context">Restrict to CG context</a></li>
-<li><a class="reference internal" href="#merge-symetrical-cpg-lines-updated-cgmap-file">Merge symetrical CpG lines (updated CGmap file)</a></li>
-<li><a class="reference internal" href="#identify-icr-hotspot-from-each-tissue-or-gamet-cells">Identify ICR hotspot from each tissue or gamet cells</a></li>
-<li><a class="reference internal" href="#merged-bed-file">Merged bed file</a></li>
-<li><a class="reference internal" href="#union-bed-file">Union bed file</a></li>
-<li><a class="reference internal" href="#count-putative-icr-in-all-tissue-final-file">Count putative ICR in all tissue (Final file)</a></li>
-</ul>
-</li>
-</ul>
-<div class="relations">
-<h3>Related Topics</h3>
-<ul>
-  <li><a href="index.html">Documentation overview</a><ul>
-  </ul></li>
-</ul>
-</div>
-  <div role="note" aria-label="source link">
-    <h3>This Page</h3>
-    <ul class="this-page-menu">
-      <li><a href="_sources/output.rst.txt"
-            rel="nofollow">Show Source</a></li>
-    </ul>
-   </div>
-<div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
-    <form class="search" action="search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
-    </form>
-</div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
-        </div>
-      </div>
-      <div class="clearer"></div>
     </div>
-    <div class="footer">
-      &copy;2019, Dereje Jima.
       
-      |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.7</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
       
-      |
-      <a href="_sources/output.rst.txt"
-          rel="nofollow">Page source</a>
-    </div>
-
-    
-
-    
+    </p>
+    <p>
+        &copy; Copyright 2018 Dereje Jima.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.1.<br/>
+    </p>
+  </div>
+</footer>
   </body>
 </html>
