@@ -37,7 +37,6 @@ General pipeline flowchart
 ==========================
 
 .. image:: _static/images/flowchart.png
-   :width: 600
 
 Usage Examples
 ==============

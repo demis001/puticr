@@ -40,7 +40,7 @@ puticr/bin/*
 docs/_build
 docs2/
 paperV2/
-build/
+docs/build/
 Jima_puticr_manuscript*
 mytest/
 *.zip
