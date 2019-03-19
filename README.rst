@@ -71,7 +71,7 @@ Supported Python Versions
  
 Application routine template
 ----------------------------
- 
+
 .. image:: docs/source/_static/images/flowchart.png
    
 
