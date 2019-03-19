@@ -78,7 +78,7 @@ Application routine template
 Licenses
 ========
  
- The code that makes puticr is licensed under the GPL license. Feel free to use it in  your free software/open-source applications
+ The code that makes puticr is licensed under the MIT license. Feel free to use it in  your free software/open-source applications
  
  
 Issues
