@@ -59,8 +59,7 @@ Changelog
  Detail Online Documentation
  ---------------------------
 
-.. |location_link| raw:: html
- <a href="https://puticr.readthedocs.io/en/latest" target="_blank">online documentation</a>
+`Online documentation https://puticr.readthedocs.io/en/latest`_
 
 Supported Python Versions
 -------------------------
