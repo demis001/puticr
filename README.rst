@@ -56,10 +56,10 @@ Changelog
  
  See `Changelog <HISTORY.rst>`_
 
- Detail Online Documentation
- ---------------------------
+Detail Online Documentation
+---------------------------
 
-`Online documentation https://puticr.readthedocs.io/en/latest`_
+`Online Documentation <https://puticr.readthedocs.io/en/latest/>`_
 
 Supported Python Versions
 -------------------------
