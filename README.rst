@@ -48,7 +48,8 @@ sudo apt-get install graphviz
 Installation 
 -------------
  
- See `Installation <docs/installation.rst>`_
+ See `Installation <docs/source/installation.rst>`_
+ 
  
 Changelog
 ---------
