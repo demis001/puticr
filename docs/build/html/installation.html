@@ -235,7 +235,8 @@ This is also the way to run germ layer tissue samples (50% methylation)</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">puticr_cli  -o outdir2 -f testData/raw -l 6 -c 12  -L 0.3 -U 0.7  --indexed=yes --refGenome=mm10.fa --refGenomeDir=YOURPATH/mm10ref/</span>
 </pre></div>
 </div>
-<p>To run gamet cells samples (oocytes and sperm) that expected (100% methylation call)</p>
+<p>To run gamet cells samples (oocytes and sperm) that expected (100% methylation call). We haven’t provided the oocytes and sperm test data. The files are similar to the test data provided.
+Please rename the files as oocyte.*.fastq.gz and sperm.*.fastq.gz in its separate directory.</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">puticr_cli  -o outdir2 -f testData/raw  -l 6 -c 12  -L 0.8 -U 1.0  --indexed=no --refGenome=hs_chr6.fa --refGenomeDir=testData/genome2/</span>
 </pre></div>
 </div>
