@@ -37,7 +37,7 @@ puticr/download/
 puticr/include/
 puticr/bin/
 puticr/bin/*
-docs/_build
+docs/build
 docs2/
 paperV2/
 docs/build/
