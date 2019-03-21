@@ -94,8 +94,8 @@ Then do this, `indexed=yes` telling the application to index before it uses it. 
     puticr_cli  -o outdir2 -f testData/raw -l 6 -c 12  -L 0.3 -U 0.7  --indexed=yes --refGenome=mm10.fa --refGenomeDir=YOURPATH/mm10ref/
 
 
-To run gamet cells samples (oocytes and sperm) that expected (100% methylation call). We haven't provided the oocytes and sperm test data. The file is similar to the test data. 
-Please rename the file as oocyte_*.fastq.gz and sperm_*.fastq.gz in its separate directory. 
+To run gamet cells samples (oocytes and sperm) that expected (100% methylation call). We haven't provided the oocytes and sperm test data. The files are similar to the test data provided. 
+Please rename the files as oocyte.*.fastq.gz and sperm.*.fastq.gz in its separate directory. 
 
 .. code-block:: console
 
