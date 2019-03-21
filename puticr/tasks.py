@@ -35,22 +35,20 @@ def creatSymLink(src, dist):
     os.symlink(src, dist)
     return
     
-def trimFastQ(input,trimleft, output):
-    """
-    Arguments:
-    -`input`: input fastq file
-    -`trimleft`: number nt to trim from 5'-end
-    -`output`: output file
-    """
-    dirname, filename = os.path.split(output)
+def trimFastq(input, output, trimLeft, proFastq):
+    """Clean fastq file using trim_galore"""
     cmds = [
-          'seqtk trimfq',
-          '-b ', str(trimleft),
-          input,
-          '> ', output,
-      ]
-    cmds = '  '.join(cmds)
-    cmds += " 2>&1 | tee -a  " + dirname + "/trim_step.log"
+        'trim_galore', '-q', str(20),
+        '--stringency', str(5),
+        '--trim1',
+        '--clip_R1', str(trimLeft),
+        '--trim-n',
+        '--phred33',
+        '--gzip', '--illumina',
+        input,
+        '-o', proFastq, 
+    ]
+    cmds ='  '.join(cmds)
     runCommand(cmds, True)
     return
 def copyFileToAnaFolder(file_to_copy, file_copy):
