@@ -34,6 +34,25 @@ def mkdir(dirname):
 def creatSymLink(src, dist):
     os.symlink(src, dist)
     return
+    
+def trimFastQ(input,trimleft, output):
+    """
+    Arguments:
+    -`input`: input fastq file
+    -`trimleft`: number nt to trim from 5'-end
+    -`output`: output file
+    """
+    dirname, filename = os.path.split(output)
+    cmds = [
+          'seqtk trimfq',
+          '-b ', str(trimleft),
+          input,
+          '> ', output,
+      ]
+    cmds = '  '.join(cmds)
+    cmds += " 2>&1 | tee -a  " + dirname + "/trim_step.log"
+    runCommand(cmds, True)
+    return
 def copyFileToAnaFolder(file_to_copy, file_copy):
     """copy the mapfile to analysis dir
     Arguments:
