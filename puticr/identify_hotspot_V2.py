@@ -65,34 +65,45 @@ def dmrHotSpot(mylist):
                 sublist = []
                 #print mylist
                 firstLine= mylist[0]
-		ch,genome,start,CpG,cont,metp,metcount,totalCount, metstatus=firstLine.split()
+		ch3,genome3,start3,CpG3,cont3,metp3,metcount3,totalCount3, metstatus3=firstLine.split()
 		endLine = mylist[-1]
-		ch,genome,end,CpG,cont,metp,metcount,totalCount, metstatus=endLine.split()
+		ch4,genome4,end4,CpG4,cont4,metp4,metcount4,totalCount4, metstatus4=endLine.split()
                 getcontext().prec =2
-                length = int(end) - int(start)
+                length = int(end4) - int(start3)
                 length = str(length)
-                mP = Decimal("0.00")
-                tMc = 0
-                totalReads = 0
+                #mPercent = Decimal("0.00")
+                #tMcount = Decimal("0.0")
+                totalReads = [] # to report the values at max count
                 totalCpG = 0
-                n= len(mylist)
+                totalCpGSite= len(mylist)
+                #print mylist
                 for l in mylist:
-                    ch,genome,start2,CpG,cont,metp,metcount,totalCount, metstatus=l.split()
-                    metp = Decimal(metp)
-                    #print type(mP)
-                    #print type(metp)
-                    mP += metp
-                    tMc += int(metcount)
-                    totalReads += int(totalCount)
-                    totalCpG += int(metstatus)
-                mP = mP/Decimal(n)
-                mP = str(mP)
-                tMc = int(round(Decimal(tMc)/Decimal(n)))
-                tMc = str(tMc)
-                totalReads =int(round(Decimal(totalReads)/Decimal(n)))
-                totalReads = str(totalReads)
-                totalCpG = str(totalCpG)
-		icr = [ch, start, end, length, mP, tMc,totalReads, totalCpG]
+                    # Initially intended to report average across all CpGs, but decided to report methylation percent, total methylated reads, and total reads at max read count from the list.
+                    ch5,genome5,start5,CpG5,cont5,metp5,metcount5,totalCount5, metstatus5=l.split()
+                    metP = Decimal(metp5)
+                    #print type(mPercent)
+                    #print type(metP)
+                    #mPercent += metP
+                    #tMcount += int(metcount5)
+                    totalReads.append(int(totalCount5))
+                # report the index of maxTotalReadCount
+                max_value = max(totalReads)
+                max_index = totalReads.index(max_value)
+                my_max_line = mylist[max_index]
+                ch6,genome6,start6,CpG6,cont6,metp6,metcount6,totalCount6, metstatus6=my_max_line.split()
+                    #totalCpG += int(metstatus5)
+                #aveMetPerc = mPercent/Decimal(totalCpGSite)
+                #aveMetPerc = str(aveMetPerc)
+                #aveTotalMetCount = Decimal(tMcount)/Decimal(totalCpGSite)
+                #aveTotalMetCount = str(aveTotalMetCount)
+                #aveTotalReads =Decimal(totalReads)/Decimal(totalCpGSite)
+                #aveTotalReads = str(aveTotalReads)
+                metPerc=str(metp6)
+                totalMetCount=str(metcount6)
+                totalReads=str(totalCount6)
+
+                totalCpG = str(totalCpGSite)
+		icr = [ch3, start3, end4, length, metPerc, totalMetCount, totalReads, totalCpG]
 		icr2 = "\t".join(icr)
 		print icr2
 

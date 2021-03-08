@@ -34,7 +34,7 @@ def mkdir(dirname):
 def creatSymLink(src, dist):
     os.symlink(src, dist)
     return
-    
+
 def trimFastq(input, output, trimLeft, proFastq):
     """Clean fastq file using trim_galore"""
     cmds = [
@@ -46,7 +46,7 @@ def trimFastq(input, output, trimLeft, proFastq):
         '--phred33',
         '--gzip', '--illumina',
         input,
-        '-o', proFastq, 
+        '-o', proFastq,
     ]
     cmds ='  '.join(cmds)
     runCommand(cmds, True)
@@ -71,15 +71,16 @@ def bowtie2_genomeIndex(fa_file, genomeDir, thread):
     cmds = '  '.join(cmds)
     runCommand(cmds, True)
     return
+# '-i', input,
 def alignBsData(input, output, thread, genomeDir, fa_file):
+    click.echo(input)
     cmds = [
         'bs_seeker2-align.py',
         '-i', input,
-        '-o', output,
         '-f','bam',
         '--bt2-p', str(thread),
         '-m', str(4),
-        '--bt2-I', str(0), 
+        '--bt2-I', str(0),
         '--bt2-X', str(1000),
         '-d',genomeDir,
         '--aligner=bowtie2',
@@ -91,7 +92,9 @@ def alignBsData(input, output, thread, genomeDir, fa_file):
     return
 
 def sortBam(input, output, thread):
-    tempFile = "temp_" + input
+    myDir, baseFile = os.path.split(input)
+    tempFile = "temp_" + baseFile
+    tempFile = myDir + "/" + tempFile
     cmds = [
         'samtools sort',
         '-@', str(thread),
@@ -117,20 +120,20 @@ def indexBam(input, output, thread):
 
 def sameTissueBamMerge(input, output):
     if len(input) > 1:
-        
+
         inFile = " ".join(input)
         myDir, baseFile = os.path.split(output)
         cmds = [
             'samtools merge',
             baseFile,
             inFile,
-            
+
         ]
         cmds = ' '.join(cmds)
         runCommand(cmds, True)
         cmds2 = [
             'mv',
-            baseFile, 
+            baseFile,
             myDir,
         ]
         cmds2 = ' '.join(cmds2)
@@ -148,7 +151,7 @@ def sameTissueBamMerge(input, output):
 
 
 def bamToCGmap(input, output,faFile):
-    
+
     cmds = [
         'cgmaptools convert  bam2cgmap',
         '-b',input,
@@ -159,7 +162,7 @@ def bamToCGmap(input, output,faFile):
     runCommand(cmds, True)
     return
 def extractCGcontext(input, output):
-    
+
     cmds = [
         'zcat',
         input,
@@ -171,7 +174,7 @@ def extractCGcontext(input, output):
     return
 
 def mergeConsecutiveCGcall(input, output):
-    
+
     cmds = [
         'update_CGmap2.py',
         '-f', input,
@@ -182,12 +185,12 @@ def mergeConsecutiveCGcall(input, output):
     runCommand(cmds, True)
     return
 def identifyICRhotSpot(input, output, lowerMeth, upperMeth):
-    
+
     cmds = [
         'identify_hotspot_V2.py',
         '-f', input,
         '-l', str(lowerMeth),
-        '-u',  str(0.7),
+        '-u',  str(upperMeth),
         '>',
         output,
     ]
@@ -196,10 +199,10 @@ def identifyICRhotSpot(input, output, lowerMeth, upperMeth):
     return
 
 def textToBed(input, output):
-    
+
     cmds = [
         'grep -v "start"', input,
-        '| awk', 
+        '| awk',
         '\'{print "chr"$1"\t"$2"\t"$3"\t"$4"\t"$5"\t"$6"\t"$7"\t"$8}\' >',output,
     ]
     cmds = ' '.join(cmds)

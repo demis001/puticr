@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+
 """Console script for puticr."""
 import sys
 import click
@@ -122,11 +123,13 @@ def indexGenome(input, output):
 @graphviz(height=1.6, width=2, label="Align\nsequence")
 @follows(cleanFastq)
 @transform(join(proFastq, "*_trimmed.fq.gz"), suffix("_trimmed.fq.gz"), "_trimmed.bam")
+#@collate(join(proFastq, "*_trimmed.fq.gz"), regex(r"(.+)_.+_trimmed.fq.gz$"),  r'\1_trimmed.bam')
 def bsAlign(input, output):
     """ Align the the sequence to reference genome
     input: trimmed fastq.gz file
     output: aligned bam file
     """
+    click.echo(input)
     click.echo(
         colored("Stage 3: Align the BS sequence to the reference gneome ...", "green"))
     if not os.path.exists(genomeDir):
@@ -142,11 +145,12 @@ bamFiles = glob(join(proFastq, "*_trimmed.bam"))
 
 
 @graphviz(height=1.6, width=2, label="Merge bam\n files")
-@follows(bsAlign)
-@collate(join(proFastq, "*_trimmed.bam"), regex(r"(.+)\..+_trimmed.bam$"),  r'\1.merged.bam')
+#@follows(bsAlign)
+#@collate(join(proFastq, "*_trimmed.bam"), regex(r"(.+)\..+_trimmed.bam$"),  r'\1.merged.bam')
+@collate(join(proFastq, "*_trimmed.bam"), regex(r"(.+)_.+_trimmed.bam$"),  r'\1.merged.bam')
 def mergeBamSameTissue(input, output):
     """ Sort and index bam file
-    input: bam file 
+    input: bam file
     output: Merged bam from the same tissue
     """
     # click.echo(input)
@@ -160,7 +164,7 @@ def mergeBamSameTissue(input, output):
 @transform(join(proFastq, "*.merged.bam"), suffix(".bam"), ".sorted.bam")
 def bamSort(input, output):
     """ Sort and index bam file
-    input: bam file 
+    input: bam file
     output: sorted and indexed bam file
     """
     click.echo(colored("Stage 5: Sort  bam files ...", "green"))
@@ -173,7 +177,7 @@ def bamSort(input, output):
 @transform(join(proFastq, "*.sorted.bam"), suffix(".bam"), ".bam.bai")
 def bamIndex(input, output):
     """ Sort and index bam file
-    input: bam file 
+    input: bam file
     output: sorted and indexed bam file
     """
     click.echo(colored("Stage 6: Index  bam files ...", "green"))
@@ -186,8 +190,8 @@ def bamIndex(input, output):
 @transform(join(proFastq, "*.sorted.bam"), suffix(".sorted.bam"), ".sorted")
 def createCGmap(input, output):
     """ Sort and index bam file
-    input: sorted bam file 
-    output: CGmap format 
+    input: sorted bam file
+    output: CGmap format
     """
     click.echo(colored("Stage 7: Convert bam file to CGmap format ...", "green"))
     genomeFolder = genomeDir[:-1]
@@ -201,8 +205,8 @@ def createCGmap(input, output):
 @transform(join(proFastq, "*.sorted.CGmap.gz"), suffix(".CGmap.gz"), "_CGcontext.CGmap")
 def extractCG_Context(input, output):
     """ Sort and index bam file
-    input: gzipped CGmap file 
-    output: Extracted CG context CGmap file 
+    input: gzipped CGmap file
+    output: Extracted CG context CGmap file
     """
     click.echo(
         colored("Stage 8: Extract CG context from the CGmap files ...", "green"))
@@ -217,8 +221,8 @@ def extractCG_Context(input, output):
 @transform(join(tempDir, "*_CGcontext.CGmap"), suffix(".CGmap"), "_updated.CGmap")
 def mergeConCGcall(input, output):
     """ Sort and index bam file
-    input: gzipped CGmap file 
-    output: Extracted CG context CGmap file 
+    input: gzipped CGmap file
+    output: Extracted CG context CGmap file
     """
     click.echo(
         colored("Stage 9: Merge consecutive CG call in the CGmap file ...", "green"))
@@ -232,7 +236,7 @@ def mergeConCGcall(input, output):
 def icrHotSpot(input, output):
     """ Sort and index bam file
     input: updated CGmap file
-    output: identified putative ICR as txt fromat 
+    output: identified putative ICR as txt fromat
     """
     click.echo(colored(
         "Stage 10: Identify ICR hotspot from CG context CGmap file ...", "green"))
@@ -290,7 +294,7 @@ def mergeBed(input, output):
 def countICR(input, output):
     """ Create a merged of bed files
     input: union and merged bed files from multiple tissue
-    output: A putative ICR region count based on the region count 
+    output: A putative ICR region count based on the region count
     """
     click.echo(input)
     click.echo(colored(
@@ -315,9 +319,13 @@ def main():
         t0 = time.time()
         click.echo("Starting the process .....")
         #click.echo("Starting the pipeline, staring time ...{}".format(datetime.timedelta(seconds=t0)))
-        tasks_torun = [prepare_analysis, cleanFastq]
-        pipeline_run(["prepare_analysis", "cleanFastq", "bsAlign", "mergeBamSameTissue", "bamSort", "bamIndex", "createCGmap",
-                      "extractCG_Context", "mergeConCGcall", "icrHotSpot", "convertToBed", "unionBed", "mergeBed", "countICR"], verbose=1, multiprocess=cpuNum)
+        #tasks_torun = [prepare_analysis, cleanFastq]
+        # pipeline_run(["prepare_analysis", "cleanFastq", "bsAlign", "mergeBamSameTissue", "bamSort", "bamIndex", "createCGmap",
+        #             "extractCG_Context", "mergeConCGcall", "icrHotSpot", "convertToBed", "unionBed", "mergeBed", "countICR"], verbose=1, multiprocess=cpuNum)
+
+        pipeline_run(["mergeBamSameTissue", "bamSort", "bamIndex", "createCGmap",
+                       "extractCG_Context", "mergeConCGcall", "icrHotSpot", "convertToBed", "unionBed", "mergeBed", "countICR"], verbose=1, multiprocess=cpuNum)
+        #pipeline_run(["icrHotSpot", "convertToBed", "unionBed", "mergeBed", "countICR"], verbose=1, multiprocess=cpuNum)
         # Flowcharts can be printed in a large number of formats including jpg, svg, png and pdf
         pipeline_printout_graph("flowchart.pdf", "pdf", [countICR], user_colour_scheme={
                                 "colour_scheme_index": 6}, pipeline_name="Putative ICR pipeline", no_key_legend=False)

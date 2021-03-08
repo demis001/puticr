@@ -223,6 +223,12 @@ def get_options():
 
     )
     parser.add_argument(
+        '-p',
+        '--paired',
+        required=False,
+        help="Pired end reads"
+    )
+    parser.add_argument(
         '-l',
         '--trim_left',
         type=int,
