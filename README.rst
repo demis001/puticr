@@ -14,25 +14,24 @@ puticr
         :alt: Documentation Status
 
 
+`puticr` is an application to identify putative Imprint Control Regions (ICRs) from Whole Genome Bisulfite Sequencing (WGBS) data. WGBS of cells representing the gametic cells (oocyte and sperm) and the
+three germ layer tissues- the endoderm, mesoderm, and exoderm (i.e., liver, kidney, brain, etc.) is required to identify putative ICRs. 
 
-`puticr` is an application to identify putative Imprint Control Regions (ICRs) from Whole Genome Bisulfite Sequencing (WGBS) data. WGBS of cells representing the gamet cells (oocyte and sperm) and the
-three germ layer tissues- the endoderm, mesoderm and exoderm (i.e liver, kidney, brain, etc) is required to identify putative ICRs. 
+The ICR will be identified in the following procedures: 
 
-The ICR are identified in four procidures. 
+1. Identify DNA regions that have methylated ~50% in three germ layer tissues- the encoder, mesoderm, and exoderm (e.g., kidney, liver, brain, etc.).
+2. Identify DNA regions that have methylated ~100% in gamete cells (oocyte and sperm)
+3. Identify methylated regions 50% in germ layer tissues that are fully methylated (100%) in one parental allele, and the complement parental allele should be unmethylated(0%).
+  In other words, the framework is  identifying all loci in a file (1) that are either overlap in the loci of oocyte OR sperm calls (not both)
 
-1. Identify a DNA regions that have methylated ~50% in three germ layer tissues- the endoder, mesopderm, and exoderm (eg. kidney, liver, brain etc.).
-2. Identify a DNA regions that have methylated ~100% in gamet cells (oocyte and sperm)
-3. Identify regions in that are methlated 50% in germ layer tissues that are fully methylated (100%) in one parental alleles and the complement parental allele should be unmethylated(0%).
-   This means, identify all loci in file (1) that are either overlap in the loci of oocyte OR sperm calls (not both)
-
-This application generates the hotspot from germ layer tissue and gamets cells. The user has to intersect the calls from germ layer tissue, oocytes and sperm calls to find all bona fide ICRs.
+This application generates the hotspot from germ layer tissue and gametes cells. The user has to intersect the calls from germ layer tissue, oocytes, and sperm cells to find all bona fide ICRs.
 
 
-The project attempt to streamline the analysis with most its dependencies handled during installation. 
+The project will streamline the analysis with most of its dependencies handled during installation. 
  
-The  tools uses many python packages and other dependencies.
+The tool uses many python packages and other dependencies.
  
-See the installation istructions. 
+See the installation instructions. 
  
 Dependencies:
 1. Python >= 2.7 <- Avialable in most Unix flavors
